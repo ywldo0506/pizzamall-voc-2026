@@ -131,10 +131,15 @@ const labelPlugin={
       meta.data.forEach((el,i)=>{
         const val=ds.data[i]; if(val===0||val==null) return;
         if(ds.type==='bar'){
-          const bH=el.base-el.y; if(bH<14) return;
+          const bH=el.base-el.y;
           ctx.font='bold 11px Pretendard,-apple-system,sans-serif';
-          ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.fillText(val+'%',el.x,el.y+bH/2);
+          if(bH<14){
+            ctx.fillStyle='#456e2a'; ctx.textAlign='center'; ctx.textBaseline='bottom';
+            ctx.fillText(val+'%',el.x,el.y-4);
+          } else {
+            ctx.fillStyle='#fff'; ctx.textAlign='center'; ctx.textBaseline='middle';
+            ctx.fillText(val+'%',el.x,el.y+bH/2);
+          }
         } else {
           ctx.font='bold 11px Pretendard,-apple-system,sans-serif';
           ctx.fillStyle='#2e4a1c'; ctx.textAlign='center'; ctx.textBaseline='bottom';
